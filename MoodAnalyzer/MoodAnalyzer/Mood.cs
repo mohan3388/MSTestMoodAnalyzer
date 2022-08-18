@@ -26,14 +26,18 @@ namespace MoodAnalyzer
                 {
                     throw new MoodException(MoodException.ExceptionType.EMPTY_MOOD, "Message is Empty");
                 }
-                if (message.ToLower().Contains("happy"))
+                if (message.ToLower().Contains("HAPPY"))
                 {
-                    return "Happy";
+                    return "HAPPY";
                 }
                 else
                 {
-                    return "Sad";
+                    return "SAD";
                 }
+            }
+            catch (MoodException)
+            {
+                throw new MoodException(MoodException.ExceptionType.NULL_MOOD, "Message is Null");
             }
             catch (Exception)
             {

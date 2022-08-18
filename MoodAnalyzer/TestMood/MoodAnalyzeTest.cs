@@ -36,5 +36,12 @@ namespace TestMood
             }
 
         }
+        [TestMethod]
+        public void GivenMoodAnalysisClassName_ShouldReturnMoodAnalysisObject()
+        {
+            object expected = new Mood();
+            object obj = AnalyzeFactory.CreateMoodAnalysis("MoodAnalyzer.Mood", "Mood");
+            expected.Equals(obj);
+        }
     }
 }
