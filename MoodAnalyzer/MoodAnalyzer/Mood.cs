@@ -8,6 +8,7 @@ namespace MoodAnalyzer
 {
     public class Mood
     {
+
         public string message;
         public Mood(string message)
         {
@@ -17,19 +18,26 @@ namespace MoodAnalyzer
         {
             try
             {
-
-                if (message.ToLower().Contains("HAPPY"))
+                if (message == null)
                 {
-                    return "HAPPY";
+                    throw new MoodException(MoodException.ExceptionType.NULL_MOOD, "Message is Null");
+                }
+                if (message.Equals(" "))
+                {
+                    throw new MoodException(MoodException.ExceptionType.EMPTY_MOOD, "Message is Empty");
+                }
+                if (message.ToLower().Contains("happy"))
+                {
+                    return "Happy";
                 }
                 else
                 {
-                    return "SAD";
+                    return "Sad";
                 }
             }
             catch (Exception)
             {
-                return "HAPPY";
+                throw new MoodException(MoodException.ExceptionType.EMPTY_MOOD, "Message is Empty");
             }
 
         }
