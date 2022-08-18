@@ -6,19 +6,24 @@ namespace TestMood
     public class MoodAnalyzeTest
     {
         private readonly Mood moodAnalyzer;
-
         public MoodAnalyzeTest()
         {
-            moodAnalyzer = new Mood("I am in SAD Mood");
+            moodAnalyzer = new Mood("");
         }
-
         [TestMethod]
-        public void To_Check_Mood_Happy_or_Sad()
+        [DataRow("", "message is Empty")]
+        [DataRow(null, "message is null")]
+        public void InputInString_CheckingMoodAnalysis_MustBeReturn_Happy(string input, string expected)
         {
+            try
             {
-                var result = moodAnalyzer.MoodAnalyze();
-                Assert.AreEqual(result, "SAD");
+                var result = moodAnalyzer.AnalyzeMood();
             }
+            catch (System.Exception ex)
+            {
+                Assert.AreEqual(ex.Message, "message is Empty");
+            }
+
         }
     }
 }
